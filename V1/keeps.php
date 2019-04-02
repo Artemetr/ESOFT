@@ -1,13 +1,13 @@
 <?php
-    require __DIR__."/libs/dbc.php";
+    require __DIR__."/*path*/dbc.php";
 
     if (!$_SESSION) {
-        require __DIR__."/libs/lo.php";
+        require __DIR__."/*path*/lo.php";
     }
 
     $data = $_POST;
     if(isset($data['btn_byby'])) {
-        require __DIR__."/libs/lo.php";
+        require __DIR__."/*path*/lo.php";
     }
 
     if(isset($data['btn_add_new_task'])) {
@@ -40,7 +40,7 @@
             }
             R::store($new_task);
 
-            header('Location: http://artemetr.1gb.ru/keeps.php');
+            header('Location: http://*my_site*/keeps.php');
         }
     }
 
@@ -49,21 +49,21 @@
         $_SESSION['sort_data']->start = $now_d;
         $_SESSION['sort_data']->end = $now_d;
         $_SESSION['test']->day = 1;
-        header('Location: http://artemetr.1gb.ru/keeps.php');
+        header('Location: http://*my_site*/keeps.php');
     }
     if(isset($data['btn_week'])) {
         $now_d = date('Y-m-d');
         $_SESSION['sort_data']->start = $now_d;
         $_SESSION['sort_data']->end = date('Y-m-d', strtotime(' + 7 days'));;
         $_SESSION['test']->week = 1;
-        header('Location: http://artemetr.1gb.ru/keeps.php');
+        header('Location: http://*my_site*/keeps.php');
     }
     if(isset($data['btn_mon'])) {
         $now_d = date('Y-m-d');
         $_SESSION['sort_data']->start = $now_d;
         $_SESSION['sort_data']->end = date('Y-m-d', strtotime(' + 1 month'));
         $_SESSION['test']->mon = 1;
-        header('Location: http://artemetr.1gb.ru/keeps.php');
+        header('Location: http://*my_site*/keeps.php');
     }
 
     if(isset($data['btn_select_date'])) {
@@ -81,7 +81,7 @@
             $nn->end = "9999-01-01";
         }
         $_SESSION['sort_data'] = $nn;
-        header('Location: http://artemetr.1gb.ru/keeps.php');
+        header('Location: http://*my_site*/keeps.php');
     }
 
     $all_user_task = R::find('tasks', "login = ? AND start_date>=? AND end_date<=? ORDER BY start_date ASC", array($_SESSION['logged_user']->login,$_SESSION['sort_data']->start,$_SESSION['sort_data']->end));
@@ -155,7 +155,7 @@ if (isset($data['btn_calendar'])) {
                     $s[$ky]->end_date = date('Y-m-d');
                 }
                 R::storeAll($s);
-                header('Location: http://artemetr.1gb.ru/keeps.php');
+                header('Location: http://*my_site*/keeps.php');
                 break;
             }
 
@@ -169,7 +169,7 @@ if (isset($data['btn_calendar'])) {
         //echo "<pre>$t_h:{$s}<br>";
         //var_dump($s);
         R::trash($s);
-        header('Location: http://artemetr.1gb.ru/keeps.php');
+        header('Location: http://*my_site*/keeps.php');
     }
 
 ?>
@@ -186,7 +186,7 @@ if (isset($data['btn_calendar'])) {
     <link rel="stylesheet" type="text/css" href="/css/hg-keeps.css">
 </head>
 <body>
-<script src="//ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/*path*/jquery/3.1.0/jquery.min.js"></script>
 <header>
     <div id="hat">
         <div class="h_l">
